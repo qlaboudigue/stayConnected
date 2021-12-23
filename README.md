@@ -19,7 +19,7 @@ Once the Java Archive has been made, the following java command (referencing to 
 - java -jar ~/stayConnected-0.0.1-SNAPSHOT.jar
 
 ## Front-end
-Consists of several forms accessing the different endpoints of the API.
+Consists of several forms accessing the different endpoints of the API in a single index.html file.
 
 ## Curl commands
 - GET /countries => La liste de tous les pays  
