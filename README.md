@@ -1,11 +1,11 @@
 # stayConnected
 
 ## Project 
-The goal is to set a service displaying a list of countries using Java 11 & Springboot.
+The goal is to set a service displaying a list of countries using Java 11 & Springboot.  
 Data must be available both with A REST Api and a Front-end application.
 
 ## Set-up
-Data are stored locally in a MySql database.
+Data are stored locally in a MySql database.  
 Connection to the Database is set in project/src/resources/applications.properties
 
 ## Front-end
