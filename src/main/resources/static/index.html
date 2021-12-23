@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<head>
+  <title>Country form</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+</head>
+<body>
+
+  <p> <button onclick="javascript:getCountries()"> Afficher tous les pays </button></p>
+
+  <p> <h1> Chercher un pays </h1> </p>
+  <form action="javascript:getSingleCountry()">
+    <p>Id: <input type="text" id="id"/></p>
+    <input type="submit" value="Rechercher" />
+  </form>
+
+  <h1>Ajouter un pays</h1>
+  <form action="/country" method="post">
+    <p>name: <input type="text" name="name" required/></p>
+    <p>code: <input type="text" name="code" required minlength="2" maxlength="2"/></p>
+   <p><input type="submit" value="Ajouter" /> </p>
+  </form>
+
+  <h1>Mettre à jour un pays</h1>
+  <form action="javascript:updateCountry()">
+    <p>id: <input type=text" id="uId" required/></p>
+    <p>name: <input type="text" id="uName" name="uName" required/></p>
+    <p>code: <input type="text" id="uCode" name="uCode" required minlength="2" maxlength="2"/></p>
+    <p><input type="submit" value="Mettre à jour" /> </p>
+  </form>
+
+  <p> <h1> Supprimer un pays </h1> </p>
+  <form action="javascript:deleteCountry()">
+    <p>Id: <input type="text" id="dId"/></p>
+    <input type="submit" value="Supprimer" />
+  </form>
+
+  <script type="text/javascript">
+
+    /*
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('http://localhost:8080/countries/')
+              .then(response => response.json())
+              .then(data =>
+                      data.forEach(element => { var li = document.createElement("li");
+                        var text = document.createTextNode(element.name);
+                        li.appendChild(text);
+                        document.getElementById("myUl").appendChild(li);}));
+    });
+     */
+
+    function getCountries() {
+      window.location = "/countries";
+    }
+
+    function getSingleCountry() {
+      let cId = document.getElementById("id").value;
+      window.location = "/country/" + cId;
+    }
+
+    function updateCountry() {
+      let uId = document.getElementById("uId").value;
+      let url = 'http://localhost:8080/country/' + uId;
+      const someData = {
+        name: document.getElementById("uName").value,
+        code: document.getElementById("uCode").value
+      };
+
+      fetch(url, {
+        method: 'PUT',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify(someData)
+      })
+              .then(res => {window.location = url}) // or res.json()
+              .then(res => console.log(res))
+              .catch(error => console.log(error) )
+    }
+
+
+    function deleteCountry() {
+      let cId = document.getElementById("dId").value;
+      let url = 'http://localhost:8080/country/' + cId;
+      fetch(url, {
+        method: 'DELETE',
+      })
+              .then(res => window.location = url) // or res.json()
+              .then(res => console.log(res))
+    }
+
+  </script>
+
+</body>
+</html>
