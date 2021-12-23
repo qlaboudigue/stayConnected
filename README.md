@@ -5,13 +5,12 @@ The goal is to set a service displaying a list of countries using Java 11 & Spri
 Data must be available both with A REST Api and a Front-end application.
 
 ## Set-up
+The model country is made of a name and a country code (2 capital letters)
 Data are stored locally in a MySql database.  
 Connection to the Database is set in project/src/resources/applications.properties
 
 ## Front-end
 Consists of several forms accessing the different endpoints of the API.
-
-
 
 ## Curl commands
 - GET /countries => La liste de tous les pays  
